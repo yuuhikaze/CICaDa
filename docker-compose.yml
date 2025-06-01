@@ -12,7 +12,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./traefik/traefik.yml:/traefik.yml:ro
-      - ./traefik/certs:/certs:ro
+      - ./traefik/tls:/tls:ro
       - ./traefik/config:/config:ro
     networks:
       - proxy
