@@ -26,11 +26,11 @@ CI/CD done at caveman level.
 1.  Install go.
 
     ```bash
-    dnf install -y golang
+    sudo dnf install -y golang
     ```
 
 1.  Install adnanh/webhook.
 
     ```bash
-    go build github.com/adnanh/webhook
+    sudo env GOBIN=/usr/local/bin go install github.com/adnanh/webhook@2.8.2
     ```
