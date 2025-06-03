@@ -1,0 +1,41 @@
+[
+  {
+    "id": "hello-world",
+    "execute-command": "echo 'notify-send hi there' > /etc/webhook/pipe"
+  },
+  {
+    "id": "deploy",
+    "execute-command": "./docker-rollout.sh",
+    "command-working-directory": "{{ getenv 'TARGET_DIR' | js }}",
+    "trigger-rule":
+    {
+      "and":
+      [
+        {
+          "match":
+          {
+            "type": "payload-hash-sha1",
+            "secret": "{{ getenv 'SECRET_KEY' | js }}",
+            "parameter":
+            {
+              "source": "header",
+              "name": "X-Hub-Signature"
+            }
+          }
+        },
+        {
+          "match":
+          {
+            "type": "value",
+            "value": "refs/heads/{{ getenv 'BRANCH' | js }}",
+            "parameter":
+            {
+              "source": "payload",
+              "name": "ref"
+            }
+          }
+        }
+      ]
+    }
+  }
+]

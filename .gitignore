@@ -1,2 +1,5 @@
-tls/
+/traefik/tls/
+/traefik/dynamic/*
+!/traefik/dynamic/
+!/traefik/dynamic/tls.yml
 hooks.json

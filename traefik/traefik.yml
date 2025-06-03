@@ -24,7 +24,7 @@ providers:
     watch: true
     network: traefik_proxy
   file:
-    directory: /config
+    directory: /etc/traefik/dynamic
     watch: true
 
 log:

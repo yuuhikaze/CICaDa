@@ -11,9 +11,10 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./traefik/traefik.yml:/traefik.yml:ro
-      - ./traefik/tls:/tls:ro
-      - ./traefik/config:/config:ro
+      - ./traefik/traefik.yml:/etc/traefik/traefik.yml:ro
+      - ./traefik/dynamic:/etc/traefik/dynamic:ro
+      - ./traefik/tls/fullchain.pem:/etc/pki/tls/certs/fullchain.pem:ro
+      - ./traefik/tls/privkey.pem:/etc/pki/tls/private/privkey.pem:ro
     networks:
       - proxy
 
