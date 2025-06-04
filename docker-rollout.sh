@@ -73,6 +73,10 @@ check_health() {
 
 rollout() {
     print_and_log "INFO" "Releasing version: $BUILD_VERSION"
+    if [ -n "$(git status --porcelain)" ]; then
+        print_and_log "INFO" "Local changes detected, stashing"
+        git stash
+    fi
     git pull
     print_and_log "INFO" "Building service"
     COMPOSE_BAKE=true docker compose build "$SERVICE"
